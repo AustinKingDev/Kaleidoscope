@@ -8,11 +8,15 @@ const rightBtn = document.getElementById("rightBtn");
 const leftBtn = document.getElementById("leftBtn");
 const downBtn = document.getElementById("downBtn");
 console.log(upBtn)
+console.log(topLeftImage.style.backgroundPositionY);
 
 upBtn.addEventListener("click", function () {
-   
-topLeftImage.style.background-position += 0px 03px
-   
-})
+    
+    topLeftImage.style.transform += "translate(3px, 3px)";  
+    topRightImage.style.transform += "translate(3px, 3px)";
+    bottomLeftImage.style.transform += "translate(-3px, 3px)";
+    bottomRightImage.style.transform += "translate(-3px, 3px)";
 
-console.log(topLeftImage.style.backgroundPositionY)
+});
+
+
