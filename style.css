@@ -11,10 +11,6 @@
 
 .grid {
     display:grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    height: 20px;
-    width: 400px;
     text-align: center;
     grid-template-areas: 
     "topLeft topRight"
@@ -23,12 +19,12 @@
 
 
 #image0 {
-    transform: translate(0, 0);
-     margin:0 0;
+    
+    margin:0 0;
     width:400px ;
     height:400px;
     background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
-    background-size: 400%;
+    background-size: 300%;
     background-repeat: no-repeat;
     background-position-y: 0px;
     background-position-x: 0px;
@@ -43,7 +39,7 @@
    width:400px ;
    height:400px;
    background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
-   background-size: 400%;
+   background-size: 300%;
    background-repeat: no-repeat;
    grid-area: topRight;
    justify-self: left;
@@ -54,7 +50,7 @@
    width:400px ;
    height:400px;
    background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
-   background-size: 400%;
+   background-size: 300%;
    background-repeat: no-repeat;
    grid-area: bottomRight;
    justify-self: left;
@@ -66,7 +62,7 @@
    width:400px ;
    height:400px;
    background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
-   background-size: 400%;
+   background-size: 300%;
    background-repeat: no-repeat;
    grid-area: bottomLeft;
    justify-self:right;
@@ -80,28 +76,5 @@
     margin:0px auto;
 }
 
-@keyframes image0 {
-    0%   {transform: translate(0,0)}
-    5%   {transform: translate(0,3)}
-    10%  {transform: translate(0,6)}
-    15%  {transform: translate(0,9)}
-    20%  {transform: translate(0,12)}
-    25%  {transform: translate(0,15)}
-    30%  {transform: translate(0,18)}
-    35%  {transform: translate(0,21)}
-    40%  {transform: translate(0,24)}
-    45%  {transform: translate(0,27)}
-    50%  {transform: translate(0,30)}
-    55%  {transform: translate(0,33)}
-    60%  {transform: translate(0,36)}
-    65%  {transform: translate(0,39)}
-    70%  {transform: translate(0,42)}
-    75%  {transform: translate(0,45)}
-    80%  {transform: translate(0,48)}
-    85%  {transform: translate(0,51)}
-    90%  {transform: translate(0,54)}
-    95%  {transform: translate(0,57)}
-    100% {transform: translate(0,60)}
-  }
 
   
