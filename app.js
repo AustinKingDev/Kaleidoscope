@@ -15,8 +15,8 @@ const downLeftBtn = document.getElementById("downLeftBtn");
 const downRightBtn = document.getElementById("downRightBtn");
 
 
-
-upBtn.addEventListener("click", function () {
+//Changes X & Y background position values of kaleidoscope images 
+upBtn.addEventListener("click", function upFunc() {
    
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let addPixel = parseInt(topLeftY, 10) - 5 + "px";
@@ -36,7 +36,7 @@ upBtn.addEventListener("click", function () {
   
 });
 
-downBtn.addEventListener("click", function () {
+downBtn.addEventListener("click", function downFunc() {
    
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let addPixel = parseInt(topLeftY, 10) + 5 + "px";
@@ -56,7 +56,7 @@ downBtn.addEventListener("click", function () {
   
 });
 
-leftBtn.addEventListener("click", function () {
+leftBtn.addEventListener("click", function leftFunc() {
    
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixel = parseInt(topLeftX, 10) - 5 + "px";
@@ -76,7 +76,7 @@ leftBtn.addEventListener("click", function () {
   
 });
 
-rightBtn.addEventListener("click", function () {
+rightBtn.addEventListener("click", function rightFunc() {
    
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixel = parseInt(topLeftX, 10) + 5 + "px";
@@ -96,39 +96,42 @@ rightBtn.addEventListener("click", function () {
   
 });
 
-upLeftBtn.addEventListener("click", function () {
-   
+
+
+upLeftBtn.addEventListener("click", function upLeftFunc() {
+    
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixelY = parseInt(topLeftY, 10) - 5 + "px";
     let addPixelX = parseInt(topLeftX, 10) - 5 + "px";
     topLeftImage.style.backgroundPositionY = addPixelY;
     topLeftImage.style.backgroundPositionX = addPixelX;
-
+    
     let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
     let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
     let addPixelY1 = parseInt(topRightY, 10) - 5 + "px";
     let addPixelX1 = parseInt(topRightX, 10) - 5 + "px";
     topRightImage.style.backgroundPositionY = addPixelY1;
     topRightImage.style.backgroundPositionX = addPixelX1;
-
+    
     let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
     let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
     let addPixelY2 = parseInt(bottomLeftY, 10) - 5 + "px";
     let addPixelX2 = parseInt(bottomLeftX, 10) - 5 + "px";
     bottomLeftImage.style.backgroundPositionY = addPixelY2;
     bottomLeftImage.style.backgroundPositionX = addPixelX2;
-
+    
     let bottomRightY = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-y");
     let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
     let addPixelY3 = parseInt(bottomRightY, 10) - 5 + "px";
     let addPixelX3 = parseInt(bottomRightX, 10) - 5 + "px";
     bottomRightImage.style.backgroundPositionY = addPixelY3;
     bottomRightImage.style.backgroundPositionX = addPixelX3;
-  
+    
 });
 
-upRightBtn.addEventListener("click", function () {
+
+upRightBtn.addEventListener("click", function upRightFunc() {
    
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
@@ -160,7 +163,7 @@ upRightBtn.addEventListener("click", function () {
   
 });
 
-downLeftBtn.addEventListener("click", function () {
+downLeftBtn.addEventListener("click", function downLeftFunc() {
    
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
@@ -192,7 +195,7 @@ downLeftBtn.addEventListener("click", function () {
   
 });
 
-downRightBtn.addEventListener("click", function () {
+downRightBtn.addEventListener("click", function downRightFunc() {
    
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
@@ -226,11 +229,28 @@ downRightBtn.addEventListener("click", function () {
 
 
 
-
+//Updates kaleidoscope image with the users image url
 usersImage.oninput = function()
 {
     topLeftImage.style.backgroundImage = 'url(' + usersImage.value + ')';
     topRightImage.style.backgroundImage = 'url(' + usersImage.value + ')';
     bottomLeftImage.style.backgroundImage = 'url(' + usersImage.value + ')';
     bottomRightImage.style.backgroundImage = 'url(' + usersImage.value + ')';
+};
+
+//Allows for click and hold of button
+function holdit( btn, method, start, speedup ) {
+    var t, keep = start;
+    var repeat = function () {
+        var args = Array.prototype.slice.call( arguments );
+        method.apply( this, args );
+        t = setTimeout( repeat, start, args[0], args[1], args[2], args[3], args[4], args[5] );
+        if ( start > keep / 20 ) start = start / speedup;
+    }
+    btn.onmousedown = btn.mousedown = repeat;
+    //
+    btn.onmouseout = btn.mouseout = btn.onmouseup = btn.mouseup = function () {
+        clearTimeout( t );
+        start = keep;
+    }
 };
