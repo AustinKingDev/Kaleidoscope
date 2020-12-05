@@ -13,8 +13,9 @@
     display:grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
-    height: 400px;
+    height: 20px;
     width: 400px;
+    text-align: center;
     grid-template-areas: 
     "topLeft topRight"
     "bottomLeft bottomRight";
@@ -24,8 +25,8 @@
 #image0 {
     transform: translate(0, 0);
      margin:0 0;
-    width:500px ;
-    height:500px;
+    width:400px ;
+    height:400px;
     background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
     background-size: 400%;
     background-repeat: no-repeat;
@@ -39,8 +40,8 @@
    
     transform: scalex(-1);
     margin:0 0;
-   width:500px ;
-   height:500px;
+   width:400px ;
+   height:400px;
    background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
    background-size: 400%;
    background-repeat: no-repeat;
@@ -50,8 +51,8 @@
 
 #image2 {
     transform: scale(-1, -1) translate(0, 0);
-   width:500px ;
-   height:500px;
+   width:400px ;
+   height:400px;
    background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
    background-size: 400%;
    background-repeat: no-repeat;
@@ -62,8 +63,8 @@
 #image3 {
     transform: scaley(-1) translate(0, 0);
     margin:0 0;
-   width:500px ;
-   height:500px;
+   width:400px ;
+   height:400px;
    background-image: url(https://scx2.b-cdn.net/gfx/news/hires/2020/abstractart.jpg);
    background-size: 400%;
    background-repeat: no-repeat;

@@ -1,14 +1,17 @@
-const topLeftImage = document.getElementById("image0");
-const topRightImage = document.getElementById("image1");
-const bottomLeftImage = document.getElementById("image2");
-const bottomRightImage = document.getElementById("image3");
+let topLeftImage = document.getElementById("image0");
+let topRightImage = document.getElementById("image1");
+let bottomLeftImage = document.getElementById("image2");
+let bottomRightImage = document.getElementById("image3");
+let usersImage = document.getElementById("userImage");
 
 const upBtn = document.getElementById("upBtn");
 const rightBtn = document.getElementById("rightBtn");
 const leftBtn = document.getElementById("leftBtn");
 const downBtn = document.getElementById("downBtn");
-console.log(upBtn)
-console.log(topLeftImage.style.backgroundPositionY);
+const enterBtn = document.getElementById("enterBtn");
+
+
+
 
 upBtn.addEventListener("click", function () {
    
@@ -91,3 +94,12 @@ rightBtn.addEventListener("click", function () {
 });
 
 
+
+
+usersImage.oninput = function()
+{
+    topLeftImage.style.backgroundImage = 'url(' + usersImage.value + ')';
+    topRightImage.style.backgroundImage = 'url(' + usersImage.value + ')';
+    bottomLeftImage.style.backgroundImage = 'url(' + usersImage.value + ')';
+    bottomRightImage.style.backgroundImage = 'url(' + usersImage.value + ')';
+};
