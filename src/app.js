@@ -1,3 +1,57 @@
+import html2canvas from 'html2canvas';
+
+window.addEventListener("load", function() {
+    let downloadbutton = this.document.getElementById("download");
+    let preview = this.document.getElementById("preview");
+    // let refresh = this.document.querySelector("#capture");
+
+    function temp(){
+
+        html2canvas(document.getElementById("capture")).then(canvas => {
+            // console.log('object :>> ', canvas.toDataURL("image/png"));
+             // preview.setAttribute("src", '');
+            var imgaeData = canvas.toDataURL("image/png");
+            var newData = imgaeData.replace(/^data:image\/png/, "data:application/octet-stream");
+            // preview.setAttribute("src", newData);
+            downloadbutton.setAttribute("download", "image.png")
+            downloadbutton.setAttribute("href", newData);
+        });
+    }
+
+
+    downloadbutton.addEventListener("click", function(){
+        
+        temp();
+
+    });
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let topLeftImage = document.getElementById("image0");
 let topRightImage = document.getElementById("image1");
 let bottomLeftImage = document.getElementById("image2");
@@ -17,7 +71,7 @@ const shuffleBtn = document.getElementById("shuffleBtn");
 
 //Changes X & Y background position values of kaleidoscope images 
 upBtn.addEventListener("click", function upFunc() {
-   
+
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let addPixel = parseInt(topLeftY, 10) - 5 + "px";
     topLeftImage.style.backgroundPositionY = addPixel;
