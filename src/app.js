@@ -2,10 +2,9 @@ import html2canvas from 'html2canvas';
 
 window.addEventListener("load", function() {
     let downloadbutton = this.document.getElementById("download");
-    let preview = this.document.getElementById("preview");
+    let closepreview = this.document.getElementById("closepreview");
 
     function temp(){
-        // ,{ useCORS: false, allowTaint: true,foreignObjectRendering: true }
         html2canvas(
             document.getElementById("capture"))
             .then(canvas => {
@@ -23,6 +22,10 @@ window.addEventListener("load", function() {
 
     downloadbutton.addEventListener("click", function(){
         temp();
+    });
+
+    closepreview.addEventListener("click", function(){
+        document.getElementById("preview").innerHTML = '';
     });
 });
 
