@@ -3,33 +3,34 @@ import html2canvas from 'html2canvas';
 window.addEventListener("load", function() {
     let downloadbutton = this.document.getElementById("download");
     let preview = this.document.getElementById("preview");
-    // let refresh = this.document.querySelector("#capture");
 
     function temp(){
+        // ,{ useCORS: false, allowTaint: true,foreignObjectRendering: true }
+        html2canvas(
+            document.getElementById("capture"))
+            .then(canvas => {
+                document.getElementById("preview").innerHTML = '';
 
-        html2canvas(document.getElementById("capture")).then(canvas => {
-            // console.log('object :>> ', canvas.toDataURL("image/png"));
-             // preview.setAttribute("src", '');
-            var imgaeData = canvas.toDataURL("image/png");
-            var newData = imgaeData.replace(/^data:image\/png/, "data:application/octet-stream");
-            // preview.setAttribute("src", newData);
-            downloadbutton.setAttribute("download", "image.png")
-            downloadbutton.setAttribute("href", newData);
+                var imgaeData = canvas.toDataURL("image/png");
+                var newData = imgaeData.replace(/^data:image\/png/, "data:application/octet-stream");
+                
+                // downloadbutton.setAttribute("download", "image.png")
+                // downloadbutton.setAttribute("href", newData);
+
+                document.getElementById("preview").append(canvas);
         });
     }
 
-
     downloadbutton.addEventListener("click", function(){
-        
         temp();
-
     });
-
-
-
 });
 
 
+
+
+
+        
 
 
 
@@ -319,11 +320,28 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
 //Updates kaleidoscope image with the users image url
 usersImage.oninput = function()
 {
-    topLeftImage.style.backgroundImage = 'url(' + usersImage.value + ')';
-    topRightImage.style.backgroundImage = 'url(' + usersImage.value + ')';
-    bottomLeftImage.style.backgroundImage = 'url(' + usersImage.value + ')';
-    bottomRightImage.style.backgroundImage = 'url(' + usersImage.value + ')';
+    toDataURL(usersImage.value, function(dataUrl) {
+        topLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
+        topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
+        bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
+        bottomRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
+    })
 };
+
+function toDataURL(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        callback(reader.result);
+      }
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  }
+
 
 //Allows for click and hold of button
 function holdit( btn, method, start, speedup ) {

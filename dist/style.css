@@ -11,8 +11,6 @@
 
 .grid {
     display:grid;
-    border-radius: 10px;
-    text-align: center;
     height: 100vh;
     grid-template-areas: 
     "topLeft topRight"
@@ -52,6 +50,7 @@
     width:100%;
     height:100%;
     background-image: url('/images/default.jpg');
+    background-size: 300%;
     background-repeat: repeat;
     grid-area: bottomRight;
     justify-self: left;
@@ -79,3 +78,17 @@
 
 
   
+#preview{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    z-index: 1;
+    top: calc(50% - 500px);
+    left: calc(50% - 250px);
+}
+
+#preview canvas{
+    width: 500px!important;
+    height: 500px!important;
+    z-index: 1;
+}
