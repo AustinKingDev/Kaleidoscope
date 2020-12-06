@@ -4,57 +4,36 @@ window.addEventListener("load", function() {
     let downloadbutton = this.document.getElementById("download");
     let closepreview = this.document.getElementById("closepreview");
 
-    function temp(){
+    function genimage(){
+        // creates a canvas base of the capture id div
         html2canvas(
             document.getElementById("capture"))
             .then(canvas => {
+                // we empty the preview div
                 document.getElementById("preview").innerHTML = '';
 
+                // We generate the base64 image
                 var imgaeData = canvas.toDataURL("image/png");
                 var newData = imgaeData.replace(/^data:image\/png/, "data:application/octet-stream");
                 
+                // i kind want this to work maybe later 
                 // downloadbutton.setAttribute("download", "image.png")
                 // downloadbutton.setAttribute("href", newData);
 
+                // we add the image as a child div to the preview div
                 document.getElementById("preview").append(canvas);
         });
     }
 
+    // when click we trigger the genimage function
     downloadbutton.addEventListener("click", function(){
-        temp();
+        genimage();
     });
-
+    // close the image prview
     closepreview.addEventListener("click", function(){
         document.getElementById("preview").innerHTML = '';
     });
 });
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 let topLeftImage = document.getElementById("image0");
 let topRightImage = document.getElementById("image1");
@@ -323,6 +302,7 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
 //Updates kaleidoscope image with the users image url
 usersImage.oninput = function()
 {
+    // we get the base64 image and assign it ot the image background
     toDataURL(usersImage.value, function(dataUrl) {
         topLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
         topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
@@ -331,6 +311,7 @@ usersImage.oninput = function()
     })
 };
 
+// takes the user input image and create a base644 data code
 function toDataURL(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
