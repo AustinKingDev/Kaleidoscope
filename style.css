@@ -26,7 +26,7 @@
     height:270px;
     background-image: url(https://mewallpaper.com/thumbnail/abstract/8537-colorful-background-design-free-photo-wallpaper.jpg);
     background-size: 300%;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position-y: 0px;
     background-position-x: 0px;
     grid-area: topLeft;
@@ -41,7 +41,7 @@
    height:270px;
    background-image: url(https://mewallpaper.com/thumbnail/abstract/8537-colorful-background-design-free-photo-wallpaper.jpg);
    background-size: 300%;
-   background-repeat: no-repeat;
+   background-repeat: repeat;
    grid-area: topRight;
    justify-self: left;
 }
@@ -52,7 +52,7 @@
    height:270px;
    background-image: url(https://mewallpaper.com/thumbnail/abstract/8537-colorful-background-design-free-photo-wallpaper.jpg);
    background-size: 300%;
-   background-repeat: no-repeat;
+   background-repeat: repeat;
    grid-area: bottomRight;
    justify-self: left;
 }
@@ -64,7 +64,7 @@
    height:270px;
    background-image: url(https://mewallpaper.com/thumbnail/abstract/8537-colorful-background-design-free-photo-wallpaper.jpg);
    background-size: 300%;
-   background-repeat: no-repeat;
+   background-repeat: repeat;
    grid-area: bottomLeft;
    justify-self:right;
 }

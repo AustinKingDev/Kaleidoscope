@@ -13,7 +13,7 @@ const upLeftBtn = document.getElementById("upLeftBtn");
 const upRightBtn = document.getElementById("upRightBtn");
 const downLeftBtn = document.getElementById("downLeftBtn");
 const downRightBtn = document.getElementById("downRightBtn");
-
+const shuffleBtn = document.getElementById("shuffleBtn");
 
 //Changes X & Y background position values of kaleidoscope images 
 upBtn.addEventListener("click", function upFunc() {
@@ -222,6 +222,39 @@ downRightBtn.addEventListener("click", function downRightFunc() {
     let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
     let addPixelY3 = parseInt(bottomRightY, 10) + 5 + "px";
     let addPixelX3 = parseInt(bottomRightX, 10) + 5 + "px";
+    bottomRightImage.style.backgroundPositionY = addPixelY3;
+    bottomRightImage.style.backgroundPositionX = addPixelX3;
+  
+});
+
+shuffleBtn.addEventListener("click", function shuffleFunc() {
+   
+    let randomNumber = (Math.floor(Math.random()*100)+1)
+    let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
+    let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
+    let addPixelY = parseInt(topLeftY, 10) + randomNumber + "px";
+    let addPixelX = parseInt(topLeftX, 10) + randomNumber + "px";
+    topLeftImage.style.backgroundPositionY = addPixelY;
+    topLeftImage.style.backgroundPositionX = addPixelX;
+
+    let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
+    let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
+    let addPixelY1 = parseInt(topRightY, 10) + randomNumber + "px"; + "px";
+    let addPixelX1 = parseInt(topRightX, 10) + randomNumber + "px"; + "px";
+    topRightImage.style.backgroundPositionY = addPixelY1;
+    topRightImage.style.backgroundPositionX = addPixelX1;
+
+    let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
+    let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
+    let addPixelY2 = parseInt(bottomLeftY, 10) + randomNumber + "px"; + "px";
+    let addPixelX2 = parseInt(bottomLeftX, 10) + randomNumber + "px"; + "px";
+    bottomLeftImage.style.backgroundPositionY = addPixelY2;
+    bottomLeftImage.style.backgroundPositionX = addPixelX2;
+
+    let bottomRightY = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-y");
+    let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
+    let addPixelY3 = parseInt(bottomRightY, 10) + randomNumber + "px";
+    let addPixelX3 = parseInt(bottomRightX, 10) + randomNumber + "px";
     bottomRightImage.style.backgroundPositionY = addPixelY3;
     bottomRightImage.style.backgroundPositionX = addPixelX3;
   
