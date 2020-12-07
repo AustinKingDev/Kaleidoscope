@@ -313,7 +313,7 @@ function downLeftFunc() {
     bottomRightImage.style.backgroundPositionX = addPixelX3;
 }
 
-downLeftBtn.addEventListener("click", function downLeftFunc() {
+downLeftBtn.addEventListener("click", function () {
     holdit(downLeftBtn, downLeftFunc, 1000, 3)
 });
 
