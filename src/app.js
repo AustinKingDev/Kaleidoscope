@@ -1,40 +1,5 @@
 import html2canvas from 'html2canvas';
 
-window.addEventListener("load", function() {
-    let downloadbutton = this.document.getElementById("download");
-    let closepreview = this.document.getElementById("closepreview");
-
-    function genimage(){
-        // creates a canvas base of the capture id div
-        html2canvas(
-            document.getElementById("capture"))
-            .then(canvas => {
-                // we empty the preview div
-                document.getElementById("preview").innerHTML = '';
-
-                // We generate the base64 image
-                var imgaeData = canvas.toDataURL("image/png");
-                var newData = imgaeData.replace(/^data:image\/png/, "data:application/octet-stream");
-                
-                // i kind want this to work maybe later 
-                // downloadbutton.setAttribute("download", "image.png")
-                // downloadbutton.setAttribute("href", newData);
-
-                // we add the image as a child div to the preview div
-                document.getElementById("preview").append(canvas);
-        });
-    }
-
-    // when click we trigger the genimage function
-    downloadbutton.addEventListener("click", function(){
-        genimage();
-    });
-    // close the image prview
-    closepreview.addEventListener("click", function(){
-        document.getElementById("preview").innerHTML = '';
-    });
-});
-
 let topLeftImage = document.getElementById("image0");
 let topRightImage = document.getElementById("image1");
 let bottomLeftImage = document.getElementById("image2");
@@ -52,9 +17,46 @@ const downLeftBtn = document.getElementById("downLeftBtn");
 const downRightBtn = document.getElementById("downRightBtn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 
-//Changes X & Y background position values of kaleidoscope images 
-upBtn.addEventListener("click", function upFunc() {
+window.addEventListener("load", function () {
+    let downloadbutton = this.document.getElementById("download");
+    let closepreview = this.document.getElementById("closepreview");
 
+
+
+    function genimage() {
+        // creates a canvas base of the capture id div
+        html2canvas(
+            document.getElementById("capture"))
+            .then(canvas => {
+                // we empty the preview div
+                document.getElementById("preview").innerHTML = '';
+
+                // We generate the base64 image
+                var imgaeData = canvas.toDataURL("image/png");
+                var newData = imgaeData.replace(/^data:image\/png/, "data:application/octet-stream");
+
+                // i kind want this to work maybe later 
+                // downloadbutton.setAttribute("download", "image.png")
+                // downloadbutton.setAttribute("href", newData);
+
+                // we add the image as a child div to the preview div
+                document.getElementById("preview").append(canvas);
+            });
+    }
+
+
+
+    // when click we trigger the genimage function
+    downloadbutton.addEventListener("click", function () {
+        genimage();
+    });
+    // close the image prview
+    closepreview.addEventListener("click", function () {
+        document.getElementById("preview").innerHTML = '';
+    });
+});
+
+function upFunc() {
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let addPixel = parseInt(topLeftY, 10) - 5 + "px";
     topLeftImage.style.backgroundPositionY = addPixel;
@@ -62,7 +64,7 @@ upBtn.addEventListener("click", function upFunc() {
     let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
     let addPixel1 = parseInt(topLeftY, 10) - 5 + "px";
     topRightImage.style.backgroundPositionY = addPixel1;
- 
+
     let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
     let addPixel2 = parseInt(bottomLeftY, 10) - 5 + "px";
     bottomLeftImage.style.backgroundPositionY = addPixel2;
@@ -70,11 +72,18 @@ upBtn.addEventListener("click", function upFunc() {
     let bottomRightY = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-y");
     let addPixel3 = parseInt(bottomRightY, 10) - 5 + "px";
     bottomRightImage.style.backgroundPositionY = addPixel3;
-  
+
+}
+
+
+
+upBtn.addEventListener("click", function () {
+    holdit(upBtn, upFunc, 1000, 3)
+
 });
 
-downBtn.addEventListener("click", function downFunc() {
-   
+function downFunc() {
+
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let addPixel = parseInt(topLeftY, 10) + 5 + "px";
     topLeftImage.style.backgroundPositionY = addPixel;
@@ -82,7 +91,7 @@ downBtn.addEventListener("click", function downFunc() {
     let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
     let addPixel1 = parseInt(topLeftY, 10) + 5 + "px";
     topRightImage.style.backgroundPositionY = addPixel1;
- 
+
     let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
     let addPixel2 = parseInt(bottomLeftY, 10) + 5 + "px";
     bottomLeftImage.style.backgroundPositionY = addPixel2;
@@ -90,11 +99,13 @@ downBtn.addEventListener("click", function downFunc() {
     let bottomRightY = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-y");
     let addPixel3 = parseInt(bottomRightY, 10) + 5 + "px";
     bottomRightImage.style.backgroundPositionY = addPixel3;
-  
+}
+
+downBtn.addEventListener("click", function () {
+    holdit(downBtn, downFunc, 1000, 3)
 });
 
-leftBtn.addEventListener("click", function leftFunc() {
-   
+function leftFunc() {
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixel = parseInt(topLeftX, 10) - 5 + "px";
     topLeftImage.style.backgroundPositionX = addPixel;
@@ -102,7 +113,7 @@ leftBtn.addEventListener("click", function leftFunc() {
     let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
     let addPixel1 = parseInt(topLeftX, 10) - 5 + "px";
     topRightImage.style.backgroundPositionX = addPixel1;
- 
+
     let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
     let addPixel2 = parseInt(bottomLeftX, 10) - 5 + "px";
     bottomLeftImage.style.backgroundPositionX = addPixel2;
@@ -110,11 +121,14 @@ leftBtn.addEventListener("click", function leftFunc() {
     let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
     let addPixel3 = parseInt(bottomRightX, 10) - 5 + "px";
     bottomRightImage.style.backgroundPositionX = addPixel3;
-  
+}
+
+leftBtn.addEventListener("click", function () {
+    holdit(leftBtn, leftFunc, 1000, 3)
 });
 
-rightBtn.addEventListener("click", function rightFunc() {
-   
+function rightFunc() {
+
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixel = parseInt(topLeftX, 10) + 5 + "px";
     topLeftImage.style.backgroundPositionX = addPixel;
@@ -122,7 +136,7 @@ rightBtn.addEventListener("click", function rightFunc() {
     let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
     let addPixel1 = parseInt(topLeftX, 10) + 5 + "px";
     topRightImage.style.backgroundPositionX = addPixel1;
- 
+
     let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
     let addPixel2 = parseInt(bottomLeftX, 10) + 5 + "px";
     bottomLeftImage.style.backgroundPositionX = addPixel2;
@@ -130,46 +144,52 @@ rightBtn.addEventListener("click", function rightFunc() {
     let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
     let addPixel3 = parseInt(bottomRightX, 10) + 5 + "px";
     bottomRightImage.style.backgroundPositionX = addPixel3;
-  
+}
+
+rightBtn.addEventListener("click", function () {
+    holdit(rightBtn, rightFunc, 1000, 3)
 });
 
 
 
-upLeftBtn.addEventListener("click", function upLeftFunc() {
-    
+function upLeftFunc() {
+
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixelY = parseInt(topLeftY, 10) - 5 + "px";
     let addPixelX = parseInt(topLeftX, 10) - 5 + "px";
     topLeftImage.style.backgroundPositionY = addPixelY;
     topLeftImage.style.backgroundPositionX = addPixelX;
-    
+
     let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
     let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
     let addPixelY1 = parseInt(topRightY, 10) - 5 + "px";
     let addPixelX1 = parseInt(topRightX, 10) - 5 + "px";
     topRightImage.style.backgroundPositionY = addPixelY1;
     topRightImage.style.backgroundPositionX = addPixelX1;
-    
+
     let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
     let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
     let addPixelY2 = parseInt(bottomLeftY, 10) - 5 + "px";
     let addPixelX2 = parseInt(bottomLeftX, 10) - 5 + "px";
     bottomLeftImage.style.backgroundPositionY = addPixelY2;
     bottomLeftImage.style.backgroundPositionX = addPixelX2;
-    
+
     let bottomRightY = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-y");
     let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
     let addPixelY3 = parseInt(bottomRightY, 10) - 5 + "px";
     let addPixelX3 = parseInt(bottomRightX, 10) - 5 + "px";
     bottomRightImage.style.backgroundPositionY = addPixelY3;
     bottomRightImage.style.backgroundPositionX = addPixelX3;
-    
+}
+
+upLeftBtn.addEventListener("click", function () {
+    holdit(upLeftBtn, upLeftFunc, 1000, 3)
 });
 
 
-upRightBtn.addEventListener("click", function upRightFunc() {
-   
+function upRightFunc() {
+
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixelY = parseInt(topLeftY, 10) - 5 + "px";
@@ -197,43 +217,49 @@ upRightBtn.addEventListener("click", function upRightFunc() {
     let addPixelX3 = parseInt(bottomRightX, 10) + 5 + "px";
     bottomRightImage.style.backgroundPositionY = addPixelY3;
     bottomRightImage.style.backgroundPositionX = addPixelX3;
-  
+}
+
+upRightBtn.addEventListener("click", function () {
+    holdit(upRightBtn, upRightFunc, 1000, 3)
 });
+
+function downLeftFunc() {
+
+    let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
+    let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
+    let addPixelY = parseInt(topLeftY, 10) + 5 + "px";
+    let addPixelX = parseInt(topLeftX, 10) - 5 + "px";
+    topLeftImage.style.backgroundPositionY = addPixelY;
+    topLeftImage.style.backgroundPositionX = addPixelX;
+
+    let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
+    let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
+    let addPixelY1 = parseInt(topRightY, 10) + 5 + "px";
+    let addPixelX1 = parseInt(topRightX, 10) - 5 + "px";
+    topRightImage.style.backgroundPositionY = addPixelY1;
+    topRightImage.style.backgroundPositionX = addPixelX1;
+
+    let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
+    let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
+    let addPixelY2 = parseInt(bottomLeftY, 10) + 5 + "px";
+    let addPixelX2 = parseInt(bottomLeftX, 10) - 5 + "px";
+    bottomLeftImage.style.backgroundPositionY = addPixelY2;
+    bottomLeftImage.style.backgroundPositionX = addPixelX2;
+
+    let bottomRightY = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-y");
+    let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
+    let addPixelY3 = parseInt(bottomRightY, 10) + 5 + "px";
+    let addPixelX3 = parseInt(bottomRightX, 10) - 5 + "px";
+    bottomRightImage.style.backgroundPositionY = addPixelY3;
+    bottomRightImage.style.backgroundPositionX = addPixelX3;
+}
 
 downLeftBtn.addEventListener("click", function downLeftFunc() {
-   
-    let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
-    let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
-    let addPixelY = parseInt(topLeftY, 10) + 5 + "px";
-    let addPixelX = parseInt(topLeftX, 10) - 5 + "px";
-    topLeftImage.style.backgroundPositionY = addPixelY;
-    topLeftImage.style.backgroundPositionX = addPixelX;
-
-    let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
-    let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
-    let addPixelY1 = parseInt(topRightY, 10) + 5 + "px";
-    let addPixelX1 = parseInt(topRightX, 10) - 5 + "px";
-    topRightImage.style.backgroundPositionY = addPixelY1;
-    topRightImage.style.backgroundPositionX = addPixelX1;
-
-    let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
-    let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
-    let addPixelY2 = parseInt(bottomLeftY, 10) + 5 + "px";
-    let addPixelX2 = parseInt(bottomLeftX, 10) - 5 + "px";
-    bottomLeftImage.style.backgroundPositionY = addPixelY2;
-    bottomLeftImage.style.backgroundPositionX = addPixelX2;
-
-    let bottomRightY = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-y");
-    let bottomRightX = window.getComputedStyle(bottomRightImage).getPropertyValue("background-position-x");
-    let addPixelY3 = parseInt(bottomRightY, 10) + 5 + "px";
-    let addPixelX3 = parseInt(bottomRightX, 10) - 5 + "px";
-    bottomRightImage.style.backgroundPositionY = addPixelY3;
-    bottomRightImage.style.backgroundPositionX = addPixelX3;
-  
+    holdit(downLeftBtn, DownLeftFunc, 1000, 3)
 });
 
-downRightBtn.addEventListener("click", function downRightFunc() {
-   
+function downRightFunc() {
+
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixelY = parseInt(topLeftY, 10) + 5 + "px";
@@ -261,12 +287,15 @@ downRightBtn.addEventListener("click", function downRightFunc() {
     let addPixelX3 = parseInt(bottomRightX, 10) + 5 + "px";
     bottomRightImage.style.backgroundPositionY = addPixelY3;
     bottomRightImage.style.backgroundPositionX = addPixelX3;
-  
+}
+
+downRightBtn.addEventListener("click", function () {
+    holdit(downRightBtn, downRightFunc, 1000, 3)
 });
 
 shuffleBtn.addEventListener("click", function shuffleFunc() {
-   
-    let randomNumber = (Math.floor(Math.random()*100)+1)
+
+    let randomNumber = (Math.floor(Math.random() * 100) + 1)
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixelY = parseInt(topLeftY, 10) + randomNumber + "px";
@@ -294,16 +323,15 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
     let addPixelX3 = parseInt(bottomRightX, 10) + randomNumber + "px";
     bottomRightImage.style.backgroundPositionY = addPixelY3;
     bottomRightImage.style.backgroundPositionX = addPixelX3;
-  
+
 });
 
 
 
 //Updates kaleidoscope image with the users image url
-usersImage.oninput = function()
-{
+usersImage.oninput = function () {
     // we get the base64 image and assign it ot the image background
-    toDataURL(usersImage.value, function(dataUrl) {
+    toDataURL(usersImage.value, function (dataUrl) {
         topLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
         topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
         bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
@@ -314,32 +342,60 @@ usersImage.oninput = function()
 // takes the user input image and create a base644 data code
 function toDataURL(url, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      var reader = new FileReader();
-      reader.onloadend = function() {
-        callback(reader.result);
-      }
-      reader.readAsDataURL(xhr.response);
+    xhr.onload = function () {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
     };
     xhr.open('GET', url);
     xhr.responseType = 'blob';
     xhr.send();
-  }
+}
 
 
 //Allows for click and hold of button
-function holdit( btn, method, start, speedup ) {
+function holdit(btn, method, start, speedup) {
     var t, keep = start;
     var repeat = function () {
-        var args = Array.prototype.slice.call( arguments );
-        method.apply( this, args );
-        t = setTimeout( repeat, start, args[0], args[1], args[2], args[3], args[4], args[5] );
-        if ( start > keep / 20 ) start = start / speedup;
+        var args = Array.prototype.slice.call(arguments);
+        method.apply(this, args);
+        t = setTimeout(repeat, start, args[0], args[1], args[2], args[3], args[4], args[5]);
+        if (start > keep / 20) start = start / speedup;
     }
     btn.onmousedown = btn.mousedown = repeat;
     //
     btn.onmouseout = btn.mouseout = btn.onmouseup = btn.mouseup = function () {
-        clearTimeout( t );
+        clearTimeout(t);
         start = keep;
     }
 };
+
+
+
+//Press and hold Function
+function makeButtonIncrement(button, action, target, initialDelay, multiplier) {
+    var holdTimer, changeValue, timerIsRunning = false, delay = initialDelay;
+    changeValue = function () {
+        if (action == "add" && target.value < 1000)
+            target.value++;
+        else if (action == "subtract" && target.value > 0)
+            target.value--;
+        holdTimer = setTimeout(changeValue, delay);
+        if (delay > 20) delay = delay * multiplier;
+        if (!timerIsRunning) {
+            // When the function is first called, it puts an onmouseup handler on the whole document 
+            // that stops the process when the mouse is released. This is important if the user moves
+            // the cursor off of the button.
+            document.onmouseup = function () {
+                clearTimeout(holdTimer);
+                document.onmouseup = null;
+                timerIsRunning = false;
+                delay = initialDelay;
+            }
+            timerIsRunning = true;
+        }
+    }
+    button.onmousedown = changeValue;
+}
