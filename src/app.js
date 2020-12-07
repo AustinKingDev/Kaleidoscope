@@ -1,4 +1,8 @@
+import _ from 'lodash';
 import html2canvas from 'html2canvas';
+import {toDataURL} from "./unsplash";
+import {loadrndimage} from "./unsplash";
+import keyboardKey from "keyboard-key";
 
 let topLeftImage = document.getElementById("image0");
 let topRightImage = document.getElementById("image1");
@@ -6,22 +10,29 @@ let bottomLeftImage = document.getElementById("image2");
 let bottomRightImage = document.getElementById("image3");
 let usersImage = document.getElementById("userImage");
 
+let rndimg = document.getElementById("rndimg");
+let userAttribution = document.getElementById("imgAttribution");
+
+// ui toggle
+let ui = document.getElementById("ui");
+let uitoggle = document.getElementById("uitoggle");
+
 const upBtn = document.getElementById("upBtn");
 const rightBtn = document.getElementById("rightBtn");
 const leftBtn = document.getElementById("leftBtn");
 const downBtn = document.getElementById("downBtn");
-const enterBtn = document.getElementById("enterBtn");
 const upLeftBtn = document.getElementById("upLeftBtn");
 const upRightBtn = document.getElementById("upRightBtn");
 const downLeftBtn = document.getElementById("downLeftBtn");
 const downRightBtn = document.getElementById("downRightBtn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 
+let downloadbutton = document.getElementById("download");
+let closepreview = document.getElementById("closepreview");
+let previewcontainer = document.getElementById("previewcontainer");
+
+
 window.addEventListener("load", function () {
-    let downloadbutton = this.document.getElementById("download");
-    let closepreview = this.document.getElementById("closepreview");
-
-
 
     function genimage() {
         // creates a canvas base of the capture id div
@@ -44,17 +55,65 @@ window.addEventListener("load", function () {
             });
     }
 
-
-
     // when click we trigger the genimage function
     downloadbutton.addEventListener("click", function () {
+        previewcontainer.classList.toggle("hidden");
         genimage();
     });
     // close the image prview
     closepreview.addEventListener("click", function () {
+        previewcontainer.classList.toggle("hidden");
         document.getElementById("preview").innerHTML = '';
+        
     });
 });
+
+// UI Code
+uitoggle.addEventListener("click", function () {
+    ui.classList.toggle("hidden");
+});
+
+rndimg.addEventListener("click", function () {
+    loadrndimage(userAttribution,topLeftImage,topRightImage,bottomLeftImage,bottomRightImage);
+});
+
+document.addEventListener('keydown', event => {
+    // console.log('object :>> ', keyboardKey);
+    const key = keyboardKey.getKey(event);
+   
+    switch (key) {
+        case 'q':
+            upLeftFunc();
+        break
+        case 'w':
+            upFunc();
+        break
+        case 'e':
+            upRightFunc();
+        break
+
+        case 'a':
+            leftFunc();
+        break
+        case 'd':
+            rightFunc();
+        break
+
+        case 'z':
+           downLeftFunc();
+        break
+        case 's':
+           downFunc();
+        break
+        case 'c':
+            downRightFunc();
+        break
+            
+      default:
+        break
+    }
+  });
+
 
 function upFunc() {
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
@@ -134,7 +193,7 @@ function rightFunc() {
     topLeftImage.style.backgroundPositionX = addPixel;
 
     let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
-    let addPixel1 = parseInt(topLeftX, 10) + 5 + "px";
+    let addPixel1 = parseInt(topRightX, 10) + 5 + "px";
     topRightImage.style.backgroundPositionX = addPixel1;
 
     let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
@@ -328,6 +387,8 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
 
 
 
+
+
 //Updates kaleidoscope image with the users image url
 usersImage.oninput = function () {
     // we get the base64 image and assign it ot the image background
@@ -336,23 +397,15 @@ usersImage.oninput = function () {
         topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
         bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
         bottomRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
-    })
+    });
+
+    userAttribution.innerHTML = '';
+    if (userAttribution.classList.contains("bg-white")) {
+        userAttribution.classList.toggle("bg-white");
+    }
 };
 
-// takes the user input image and create a base644 data code
-function toDataURL(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        var reader = new FileReader();
-        reader.onloadend = function () {
-            callback(reader.result);
-        }
-        reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
-}
+
 
 
 //Allows for click and hold of button
@@ -371,31 +424,3 @@ function holdit(btn, method, start, speedup) {
         start = keep;
     }
 };
-
-
-
-//Press and hold Function
-function makeButtonIncrement(button, action, target, initialDelay, multiplier) {
-    var holdTimer, changeValue, timerIsRunning = false, delay = initialDelay;
-    changeValue = function () {
-        if (action == "add" && target.value < 1000)
-            target.value++;
-        else if (action == "subtract" && target.value > 0)
-            target.value--;
-        holdTimer = setTimeout(changeValue, delay);
-        if (delay > 20) delay = delay * multiplier;
-        if (!timerIsRunning) {
-            // When the function is first called, it puts an onmouseup handler on the whole document 
-            // that stops the process when the mouse is released. This is important if the user moves
-            // the cursor off of the button.
-            document.onmouseup = function () {
-                clearTimeout(holdTimer);
-                document.onmouseup = null;
-                timerIsRunning = false;
-                delay = initialDelay;
-            }
-            timerIsRunning = true;
-        }
-    }
-    button.onmousedown = changeValue;
-}
