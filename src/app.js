@@ -2,7 +2,7 @@ import _ from 'lodash';
 import html2canvas from 'html2canvas';
 import {toDataURL} from "./unsplash";
 import {loadrndimage} from "./unsplash";
-import {imgAttribution} from "./unsplash";
+import keyboardKey from "keyboard-key";
 
 let topLeftImage = document.getElementById("image0");
 let topRightImage = document.getElementById("image1");
@@ -68,7 +68,7 @@ window.addEventListener("load", function () {
     });
 });
 
-
+// UI Code
 uitoggle.addEventListener("click", function () {
     ui.classList.toggle("hidden");
 });
@@ -76,6 +76,44 @@ uitoggle.addEventListener("click", function () {
 rndimg.addEventListener("click", function () {
     loadrndimage(userAttribution,topLeftImage,topRightImage,bottomLeftImage,bottomRightImage);
 });
+
+document.addEventListener('keydown', event => {
+    // console.log('object :>> ', keyboardKey);
+    const key = keyboardKey.getKey(event);
+   
+    switch (key) {
+        case 'q':
+            upLeftFunc();
+        break
+        case 'w':
+            upFunc();
+        break
+        case 'e':
+            upRightFunc();
+        break
+
+        case 'a':
+            leftFunc();
+        break
+        case 'd':
+            rightFunc();
+        break
+
+        case 'z':
+           downLeftFunc();
+        break
+        case 's':
+           downFunc();
+        break
+        case 'c':
+            downRightFunc();
+        break
+            
+      default:
+        break
+    }
+  });
+
 
 function upFunc() {
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");

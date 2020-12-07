@@ -8,7 +8,7 @@ export async function randomImage(){
             // apiUrl: 'https://mywebsite.com/unsplash-proxy',
         });
         const results = await unsplash.photos.getRandom({});
-        console.log('results :>> ', results.response);
+        // console.log('results :>> ', results.response);
         // return results.response.urls.full;
         return results.response;
     }
