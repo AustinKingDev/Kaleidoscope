@@ -193,7 +193,7 @@ function rightFunc() {
     topLeftImage.style.backgroundPositionX = addPixel;
 
     let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
-    let addPixel1 = parseInt(topLeftX, 10) + 5 + "px";
+    let addPixel1 = parseInt(topRightX, 10) + 5 + "px";
     topRightImage.style.backgroundPositionX = addPixel1;
 
     let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");

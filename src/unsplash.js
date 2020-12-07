@@ -7,7 +7,7 @@ async function randomImage(){
             accessKey: process.env.publicapikey,
             // apiUrl: 'https://mywebsite.com/unsplash-proxy',
         });
-        const results = await unsplash.photos.getRandom({});
+        const results = await unsplash.photos.getRandom({ query: 'abstract',});
         // console.log('results :>> ', results.response);
         // return results.response.urls.full;
         return results.response;
