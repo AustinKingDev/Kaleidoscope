@@ -13,6 +13,10 @@ let usersImage = document.getElementById("userImage");
 let rndimg = document.getElementById("rndimg");
 let userAttribution = document.getElementById("imgAttribution");
 
+// ui toggle
+let ui = document.getElementById("ui");
+let uitoggle = document.getElementById("uitoggle");
+
 const upBtn = document.getElementById("upBtn");
 const rightBtn = document.getElementById("rightBtn");
 const leftBtn = document.getElementById("leftBtn");
@@ -62,6 +66,11 @@ window.addEventListener("load", function () {
         document.getElementById("preview").innerHTML = '';
         
     });
+});
+
+
+uitoggle.addEventListener("click", function () {
+    ui.classList.toggle("hidden");
 });
 
 rndimg.addEventListener("click", function () {
