@@ -2,13 +2,16 @@ import _ from 'lodash';
 import html2canvas from 'html2canvas';
 import {toDataURL} from "./unsplash";
 import {loadrndimage} from "./unsplash";
+import {imgAttribution} from "./unsplash";
 
 let topLeftImage = document.getElementById("image0");
 let topRightImage = document.getElementById("image1");
 let bottomLeftImage = document.getElementById("image2");
 let bottomRightImage = document.getElementById("image3");
 let usersImage = document.getElementById("userImage");
+
 let rndimg = document.getElementById("rndimg");
+let userAttribution = document.getElementById("imgAttribution");
 
 const upBtn = document.getElementById("upBtn");
 const rightBtn = document.getElementById("rightBtn");
@@ -57,11 +60,12 @@ window.addEventListener("load", function () {
     closepreview.addEventListener("click", function () {
         previewcontainer.classList.toggle("hidden");
         document.getElementById("preview").innerHTML = '';
+        
     });
 });
 
 rndimg.addEventListener("click", function () {
-    loadrndimage(topLeftImage,topRightImage,bottomLeftImage,bottomRightImage);
+    loadrndimage(userAttribution,topLeftImage,topRightImage,bottomLeftImage,bottomRightImage);
 });
 
 function upFunc() {
