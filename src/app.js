@@ -1,4 +1,6 @@
+import _ from 'lodash';
 import html2canvas from 'html2canvas';
+import {randomImage} from "./unsplash";
 
 window.addEventListener("load", function() {
     let downloadbutton = this.document.getElementById("download");
@@ -298,6 +300,17 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
 });
 
 
+async function loadrndimage(){
+
+    toDataURL(await randomImage(), function(dataUrl) {
+        topLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
+        topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
+        bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
+        bottomRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
+    })
+} 
+
+loadrndimage();
 
 //Updates kaleidoscope image with the users image url
 usersImage.oninput = function()
@@ -308,7 +321,7 @@ usersImage.oninput = function()
         topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
         bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
         bottomRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
-    })
+    });
 };
 
 // takes the user input image and create a base644 data code
