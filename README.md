@@ -16,7 +16,27 @@ npm run serve
 ```
 npm run build
 
+```
 
 ### Compiles and Watches JS Files
+
 ```
-npm run watch
+npm run build
+
+```
+
+### Setup Unsplash
+
+create unsplash dev account
+https://unsplash.com/developers
+
+create application 
+
+get application public key
+
+```
+cp .env.example .env 
+
+```
+
+Set publickey in .env file 
