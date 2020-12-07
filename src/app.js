@@ -8,6 +8,7 @@ let topRightImage = document.getElementById("image1");
 let bottomLeftImage = document.getElementById("image2");
 let bottomRightImage = document.getElementById("image3");
 let usersImage = document.getElementById("userImage");
+let rndimg = document.getElementById("rndimg");
 
 const upBtn = document.getElementById("upBtn");
 const rightBtn = document.getElementById("rightBtn");
@@ -52,6 +53,10 @@ window.addEventListener("load", function () {
     closepreview.addEventListener("click", function () {
         document.getElementById("preview").innerHTML = '';
     });
+});
+
+rndimg.addEventListener("click", function () {
+    loadrndimage(topLeftImage,topRightImage,bottomLeftImage,bottomRightImage);
 });
 
 function upFunc() {
@@ -326,7 +331,7 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
 
 
 
-loadrndimage(topLeftImage,topRightImage,bottomLeftImage,bottomRightImage);
+
 
 //Updates kaleidoscope image with the users image url
 usersImage.oninput = function () {
@@ -358,31 +363,3 @@ function holdit(btn, method, start, speedup) {
         start = keep;
     }
 };
-
-
-
-//Press and hold Function
-function makeButtonIncrement(button, action, target, initialDelay, multiplier) {
-    var holdTimer, changeValue, timerIsRunning = false, delay = initialDelay;
-    changeValue = function () {
-        if (action == "add" && target.value < 1000)
-            target.value++;
-        else if (action == "subtract" && target.value > 0)
-            target.value--;
-        holdTimer = setTimeout(changeValue, delay);
-        if (delay > 20) delay = delay * multiplier;
-        if (!timerIsRunning) {
-            // When the function is first called, it puts an onmouseup handler on the whole document 
-            // that stops the process when the mouse is released. This is important if the user moves
-            // the cursor off of the button.
-            document.onmouseup = function () {
-                clearTimeout(holdTimer);
-                document.onmouseup = null;
-                timerIsRunning = false;
-                delay = initialDelay;
-            }
-            timerIsRunning = true;
-        }
-    }
-    button.onmousedown = changeValue;
-}
