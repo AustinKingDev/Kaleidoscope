@@ -314,7 +314,7 @@ function downLeftFunc() {
 }
 
 downLeftBtn.addEventListener("click", function downLeftFunc() {
-    holdit(downLeftBtn, DownLeftFunc, 1000, 3)
+    holdit(downLeftBtn, downLeftFunc, 1000, 3)
 });
 
 function downRightFunc() {
