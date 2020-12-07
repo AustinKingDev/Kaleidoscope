@@ -21,7 +21,7 @@ npm run build
 ### Compiles and Watches JS Files
 
 ```
-npm run build
+npm run watch
 
 ```
 
