@@ -1,6 +1,6 @@
 import { createApi } from 'unsplash-js';
 
-export async function randomImage(){
+async function randomImage(){
 
     try{
         const unsplash = createApi({
@@ -23,7 +23,7 @@ export async function loadrndimage(userAttribution,topLeftImage,topRightImage,bo
     let data = await randomImage();
 
 
-    toDataURL(data.urls.full, function(dataUrl) {
+    toDataURL(data.urls.regular, function(dataUrl) {
         topLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
         topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
         bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
