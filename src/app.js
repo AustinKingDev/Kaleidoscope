@@ -20,9 +20,12 @@ const downLeftBtn = document.getElementById("downLeftBtn");
 const downRightBtn = document.getElementById("downRightBtn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 
+let downloadbutton = document.getElementById("download");
+let closepreview = document.getElementById("closepreview");
+let previewcontainer = document.getElementById("previewcontainer");
+
+
 window.addEventListener("load", function () {
-    let downloadbutton = this.document.getElementById("download");
-    let closepreview = this.document.getElementById("closepreview");
 
     function genimage() {
         // creates a canvas base of the capture id div
@@ -47,10 +50,12 @@ window.addEventListener("load", function () {
 
     // when click we trigger the genimage function
     downloadbutton.addEventListener("click", function () {
+        previewcontainer.classList.toggle("hidden");
         genimage();
     });
     // close the image prview
     closepreview.addEventListener("click", function () {
+        previewcontainer.classList.toggle("hidden");
         document.getElementById("preview").innerHTML = '';
     });
 });
