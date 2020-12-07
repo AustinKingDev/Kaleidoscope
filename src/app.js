@@ -351,6 +351,11 @@ usersImage.oninput = function () {
         bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
         bottomRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
     });
+
+    userAttribution.innerHTML = '';
+    if (userAttribution.classList.contains("bg-white")) {
+        userAttribution.classList.toggle("bg-white");
+    }
 };
 
 
