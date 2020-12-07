@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import html2canvas from 'html2canvas';
-import {randomImage} from "./unsplash";
+import {toDataURL} from "./unsplash";
+import {loadrndimage} from "./unsplash";
 
 let topLeftImage = document.getElementById("image0");
 let topRightImage = document.getElementById("image1");
@@ -12,7 +13,6 @@ const upBtn = document.getElementById("upBtn");
 const rightBtn = document.getElementById("rightBtn");
 const leftBtn = document.getElementById("leftBtn");
 const downBtn = document.getElementById("downBtn");
-const enterBtn = document.getElementById("enterBtn");
 const upLeftBtn = document.getElementById("upLeftBtn");
 const upRightBtn = document.getElementById("upRightBtn");
 const downLeftBtn = document.getElementById("downLeftBtn");
@@ -22,8 +22,6 @@ const shuffleBtn = document.getElementById("shuffleBtn");
 window.addEventListener("load", function () {
     let downloadbutton = this.document.getElementById("download");
     let closepreview = this.document.getElementById("closepreview");
-
-
 
     function genimage() {
         // creates a canvas base of the capture id div
@@ -45,8 +43,6 @@ window.addEventListener("load", function () {
                 document.getElementById("preview").append(canvas);
             });
     }
-
-
 
     // when click we trigger the genimage function
     downloadbutton.addEventListener("click", function () {
@@ -329,17 +325,8 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
 });
 
 
-async function loadrndimage(){
 
-    toDataURL(await randomImage(), function(dataUrl) {
-        topLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
-        topRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
-        bottomLeftImage.style.backgroundImage = 'url(' + dataUrl + ')';
-        bottomRightImage.style.backgroundImage = 'url(' + dataUrl + ')';
-    })
-} 
-
-loadrndimage();
+loadrndimage(topLeftImage,topRightImage,bottomLeftImage,bottomRightImage);
 
 //Updates kaleidoscope image with the users image url
 usersImage.oninput = function () {
@@ -352,20 +339,7 @@ usersImage.oninput = function () {
     });
 };
 
-// takes the user input image and create a base644 data code
-function toDataURL(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        var reader = new FileReader();
-        reader.onloadend = function () {
-            callback(reader.result);
-        }
-        reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
-}
+
 
 
 //Allows for click and hold of button
