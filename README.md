@@ -15,14 +15,12 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-
 ```
 
 ### Compiles and Watches JS Files
 
 ```
 npm run watch
-
 ```
 
 ### Setup Unsplash
@@ -35,8 +33,7 @@ create application
 get application public key
 
 ```
-cp .env.example .env 
-
+cp .env.example .env
 ```
 
 Set publickey in .env file 
