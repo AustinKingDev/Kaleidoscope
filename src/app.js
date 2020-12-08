@@ -84,33 +84,33 @@ document.addEventListener('keydown', event => {
     switch (key) {
         case 'q':
             upLeftFunc();
-        break
+        break;
         case 'w':
             upFunc();
-        break
+        break;
         case 'e':
             upRightFunc();
-        break
+        break;
 
         case 'a':
             leftFunc();
-        break
+        break;
         case 'd':
             rightFunc();
-        break
+        break;
 
         case 'z':
            downLeftFunc();
-        break
+        break;
         case 's':
            downFunc();
-        break
+        break;
         case 'c':
             downRightFunc();
-        break
+        break;
             
       default:
-        break
+        break;
     }
   });
 
@@ -137,7 +137,7 @@ function upFunc() {
 
 
 upBtn.addEventListener("click", function () {
-    holdit(upBtn, upFunc, 1000, 3)
+    holdit(upBtn, upFunc, 1000, 3);
 
 });
 
@@ -161,7 +161,7 @@ function downFunc() {
 }
 
 downBtn.addEventListener("click", function () {
-    holdit(downBtn, downFunc, 1000, 3)
+    holdit(downBtn, downFunc, 1000, 3);
 });
 
 function leftFunc() {
@@ -183,7 +183,7 @@ function leftFunc() {
 }
 
 leftBtn.addEventListener("click", function () {
-    holdit(leftBtn, leftFunc, 1000, 3)
+    holdit(leftBtn, leftFunc, 1000, 3);
 });
 
 function rightFunc() {
@@ -206,7 +206,7 @@ function rightFunc() {
 }
 
 rightBtn.addEventListener("click", function () {
-    holdit(rightBtn, rightFunc, 1000, 3)
+    holdit(rightBtn, rightFunc, 1000, 3);
 });
 
 
@@ -243,7 +243,7 @@ function upLeftFunc() {
 }
 
 upLeftBtn.addEventListener("click", function () {
-    holdit(upLeftBtn, upLeftFunc, 1000, 3)
+    holdit(upLeftBtn, upLeftFunc, 1000, 3);
 });
 
 
@@ -279,7 +279,7 @@ function upRightFunc() {
 }
 
 upRightBtn.addEventListener("click", function () {
-    holdit(upRightBtn, upRightFunc, 1000, 3)
+    holdit(upRightBtn, upRightFunc, 1000, 3);
 });
 
 function downLeftFunc() {
@@ -314,7 +314,7 @@ function downLeftFunc() {
 }
 
 downLeftBtn.addEventListener("click", function () {
-    holdit(downLeftBtn, downLeftFunc, 1000, 3)
+    holdit(downLeftBtn, downLeftFunc, 1000, 3);
 });
 
 function downRightFunc() {
@@ -349,12 +349,12 @@ function downRightFunc() {
 }
 
 downRightBtn.addEventListener("click", function () {
-    holdit(downRightBtn, downRightFunc, 1000, 3)
+    holdit(downRightBtn, downRightFunc, 1000, 3);
 });
 
 shuffleBtn.addEventListener("click", function shuffleFunc() {
 
-    let randomNumber = (Math.floor(Math.random() * 100) + 1)
+    let randomNumber = (Math.floor(Math.random() * 100) + 1);
     let topLeftY = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-y");
     let topLeftX = window.getComputedStyle(topLeftImage).getPropertyValue("background-position-x");
     let addPixelY = parseInt(topLeftY, 10) + randomNumber + "px";
@@ -364,15 +364,15 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
 
     let topRightY = window.getComputedStyle(topRightImage).getPropertyValue("background-position-y");
     let topRightX = window.getComputedStyle(topRightImage).getPropertyValue("background-position-x");
-    let addPixelY1 = parseInt(topRightY, 10) + randomNumber + "px"; + "px";
-    let addPixelX1 = parseInt(topRightX, 10) + randomNumber + "px"; + "px";
+    let addPixelY1 = parseInt(topRightY, 10) + randomNumber + "px";
+    let addPixelX1 = parseInt(topRightX, 10) + randomNumber + "px";
     topRightImage.style.backgroundPositionY = addPixelY1;
     topRightImage.style.backgroundPositionX = addPixelX1;
 
     let bottomLeftY = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-y");
     let bottomLeftX = window.getComputedStyle(bottomLeftImage).getPropertyValue("background-position-x");
-    let addPixelY2 = parseInt(bottomLeftY, 10) + randomNumber + "px"; + "px";
-    let addPixelX2 = parseInt(bottomLeftX, 10) + randomNumber + "px"; + "px";
+    let addPixelY2 = parseInt(bottomLeftY, 10) + randomNumber + "px";
+    let addPixelX2 = parseInt(bottomLeftX, 10) + randomNumber + "px";
     bottomLeftImage.style.backgroundPositionY = addPixelY2;
     bottomLeftImage.style.backgroundPositionX = addPixelX2;
 
@@ -384,9 +384,6 @@ shuffleBtn.addEventListener("click", function shuffleFunc() {
     bottomRightImage.style.backgroundPositionX = addPixelX3;
 
 });
-
-
-
 
 
 //Updates kaleidoscope image with the users image url
@@ -416,11 +413,11 @@ function holdit(btn, method, start, speedup) {
         method.apply(this, args);
         t = setTimeout(repeat, start, args[0], args[1], args[2], args[3], args[4], args[5]);
         if (start > keep / 20) start = start / speedup;
-    }
+    };
     btn.onmousedown = btn.mousedown = repeat;
     //
     btn.onmouseout = btn.mouseout = btn.onmouseup = btn.mouseup = function () {
         clearTimeout(t);
         start = keep;
-    }
-};
+    };
+}
